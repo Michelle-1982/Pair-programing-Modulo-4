@@ -11,18 +11,18 @@ app.use(cors());
 
 // Configuración para escuchar en el puerto definido
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+    console.log(`Example app listening on port ${port}`);
 });
 
 // Endpoints
 app.get("/books", async (req, res) => {
-  try {
-    const query = "SELECT * FROM books WHERE stock >0;";
+    try {
+        const query = "SELECT * FROM books;";
 
-    const connection = await mysql.getConnection();
-    const data = await connection.query(query);
-    res.json(data[0]);
-  } catch {
-    res.send("Algo ha ido mal");
-  }
+        const connection = await mysql.getConnection();
+        const data = await connection.query(query);
+        res.json(data[0]);
+    } catch {
+        res.send("Algo ha ido mal");
+    }
 });
